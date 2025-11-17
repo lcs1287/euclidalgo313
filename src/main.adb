@@ -9,6 +9,8 @@ procedure Main is
    A, B, G : Integer;
    User_Input : String(1..20);
    Last : Integer;
+   GA : Integer;
+   GB : Integer;
 
 begin
    AS_Init_Standard_Input;
@@ -37,8 +39,10 @@ begin
          end if;
       end loop;
 
-      Euclidean.Euclidean_Algorithm(A, B, G);
+      Euclidean.Euclidean_Algorithm(A, B, G, GA, GB);
       AS_Put_Line("gcd is: " & Natural'Image(G));
+      AS_Put_Line("ga is: " & Integer'Image(GA));
+      AS_Put_Line("gb is: " & Integer'Image(GB));
 
          loop
          As_Put("Do you want to try again (y/n)? ");
