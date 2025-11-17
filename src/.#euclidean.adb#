@@ -1,3 +1,0 @@
-Pragma SPARK_Mode (On);
-
-package body Euclidean with SPARK_Mode is

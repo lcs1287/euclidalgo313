@@ -8,22 +8,27 @@ package body Euclidean with SPARK_Mode is
       r : Natural := a;
       s : Natural := b;
 
+
    begin
-      while r > 0 and s >0
+      while r > 0 and s > 0
       loop
-         if r>s then
+         if r > s then
             r := r mod s;
          else
             s := s mod r;
          end if;
 
-          if r = 0 and s>0 or s = 0 and r > 0 then
+          if (r = 0 and s > 0) or (s = 0 and r > 0) then
             exit;
-
-            else if s > 0 then
-               gcd := s;
-            else
-               gcd := r;
-            end if;
+          end if;
       end loop;
+
+      if r = 0 then
+         gcd := s;
+      else
+         gcd := r;
+      end if;
+
    end;
+
+ end Euclidean;
