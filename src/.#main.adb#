@@ -1,0 +1,10 @@
+pragma SPARK_Mode (On);
+
+with Euclidean; use Euclidean;
+
+procedure Main is
+
+begin
+   --  Insert code here.
+   null;
+end Main;
