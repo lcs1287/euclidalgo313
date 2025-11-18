@@ -21,32 +21,42 @@ package body Euclidean with SPARK_Mode is
 
 
    begin
-      gcd := 0;
-      GA := 0;
-      GB := 0;
+
       while r > 0 and s > 0 loop
-            loop
-         if r > s then
+         pragma Loop_Invariant((r > 0 and s >= 0) or (s > 0 and r >= 0));
+
+
+
+         pragma Loop_Invariant (r = a * ra + b * rb);
+         pragma Loop_Invariant (s = a * sa + b * sb);
+
+            if r > s then
             new_r := r mod s;
             d := r / s;
+            pragma Assert(r = d*s + new_r);
             sa := ra*d + sa;
             sb := rb*d + sb;
             r := new_r;
+            pragma Assert(r = a * ra + b * rb);
 
             else
             new_s := s mod r;
             d:= s / r;
+            pragma Assert(s = d*r + new_s);
             ra := ra + sa*d;
             rb := rb + sb*d;
             s := new_s;
+
+            pragma Assert(s = a * sa + b * sb);
          end if;
 
-         pragma Assert(A = r*ra + s*sa);
-         pragma Assert(B = r*rb + s*sb);
-
           if (r = 0 and s > 0) or (s = 0 and r > 0) then
-            exit;
-          end if;
+               exit;
+
+            end if;
+
+         pragma Assert((r > 0 and s >= 0) or (s > 0 and r >= 0));
+
       end loop;
 
       if r = 0 then
@@ -54,12 +64,11 @@ package body Euclidean with SPARK_Mode is
             GA := sa;
             GB := sb;
       else
+
             gcd := r;
             GA := ra;
             GB := rb;
-      end if;
-      end loop;
+         end if;
 
-   end;
-
+   end Euclidean_Algorithm;
  end Euclidean;

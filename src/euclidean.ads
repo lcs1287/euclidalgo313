@@ -11,6 +11,9 @@ package Euclidean with SPARK_Mode is
        Global => null,
        Depends => (gcd => (a,b),
                    GA => (a,b),
-                   GB => (a,b));
+                   GB => (a,b)),
+       Pre => a > 0 and b > 0,
+       Post => (a = gcd * GA) and (b = gcd * GB);
+
 
 end Euclidean;
